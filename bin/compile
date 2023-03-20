@@ -42,7 +42,7 @@ if [ ! -f $CACHE_DIR/PURGED_CACHE_V1 ]; then
   touch $CACHE_DIR/PURGED_CACHE_V1
 fi
 
-topic "Installing Google Chrome from the $channel channel."
+topic "Installing SSL cert..."
 
 PACKAGES="$PACKAGES"
 
@@ -108,3 +108,5 @@ mkdir -p $BUILD_DIR/.pki/nssdb
 certutil -d $BUILD_DIR/.pki/nssdb -N --empty-password
 
 certutil -d sql:$BUILD_DIR/.pki/nssdb -A -t TC -n "BrightData" -i $BUILD_DIR/BrightData_CA.crt
+
+topic "Successfully installed SSL cert"
