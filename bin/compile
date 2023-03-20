@@ -103,5 +103,8 @@ export | grep -E -e ' (PATH|LD_LIBRARY_PATH|LIBRARY_PATH|INCLUDE_PATH|CPATH|CPPP
 topic "Rewrite package-config files"
 find $BUILD_DIR/.apt -type f -ipath '*/pkgconfig/*.pc' | xargs --no-run-if-empty -n 1 sed -i -e 's!^prefix=\(.*\)$!prefix='"$BUILD_DIR"'/.apt\1!g'
 
+# try $HOME after?
+mkdir -p $BUILD_DIR/.pki/nssdb
+certutil -d $BUILD_DIR/.pki/nssdb -N --empty-password
 
-certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "BrightData" -i $BUILD_DIR/BrightData_CA.crt
+certutil -d sql:$BUILD_DIR/.pki/nssdb -A -t TC -n "BrightData" -i $BUILD_DIR/BrightData_CA.crt
