@@ -1,0 +1,2 @@
+echo "heroku-ssl"
+exit 0
